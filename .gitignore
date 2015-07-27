@@ -6,16 +6,14 @@
 dist
 build
 
-
-
 # SQLite3 database
-#*.sqlite3
+*.sqlite3
 
 # Node modules
-#node_modules/
+node_modules/
 
 # Bower components
-#static/bower_components/
+static/bower_components/
 
 # Uglified JavaScript
 dist/
