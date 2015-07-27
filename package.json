@@ -1,0 +1,28 @@
+{
+  "name": "indigen",
+  "version": "1.0.0",
+  "description": "project helps to improve people's travelling experience",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "*",
+    "gulp": "*",
+    "gulp-ng-annotate": "*",
+    "gulp-uglify": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starsdeep/Indigen.git"
+  },
+  "author": "stardeep on ZJU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/starsdeep/Indigen/issues"
+  },
+  "homepage": "https://github.com/starsdeep/Indigen#readme"
+
+
+}

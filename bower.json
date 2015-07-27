@@ -1,0 +1,33 @@
+{
+  "name": "Indigen",
+  "version": "0.0.0",
+  "homepage": "https://github.com/starsdeep/Indigen",
+  "authors": [
+    "starsdeep <starsdeep on ZJU>"
+  ],
+  "description": "help to improve people's travelling experience",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-cookies": "latest",
+    "bootstrap": "latest",
+    "bootstrap-material-design": "latest",
+    "jquery": "latest",
+    "ngDialog": "latest",
+    "underscore": "latest"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
+  }
+}
