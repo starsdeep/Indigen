@@ -13,6 +13,8 @@ from rest_framework import viewsets
 from rest_framework import status
 
 from rest_framework import permissions
+from authentication.permissions import IsUserOwner
+from authentication.permissions import IsAdmin
 
 
 @api_view(['POST'])
@@ -44,14 +46,51 @@ def login(request):
 @api_view(('GET','POST'))
 def logout(request):
     auth_logout(request)
-    return Response("", status.HTTP_200_OK)
+    return Response({"message": "logout success"}, status.HTTP_200_OK)
+
+class BaseModelView(viewsets.ModelViewSet):
+    def check_permissions(self, request):
+        """
+        Check if the request should be permitted.
+        Raises an appropriate exception if the request is not permitted.
+        """
+
+        u = IsAdmin()
+
+        if u.has_permission(request,self):
+            return True
+
+        for permission in self.get_permissions():
+            if not permission.has_permission(request, self):
+                self.permission_denied(request)
+
+    def check_object_permissions(self, request, obj):
+        """
+        Check if the request should be permitted for a given object.
+        Raises an appropriate exception if the request is not permitted.
+        """
+        u = IsAdmin()
+        if u.has_object_permission(request,self,obj):
+            return True
+        for permission in self.get_permissions():
+            if not permission.has_object_permission(request, self, obj):
+                self.permission_denied(request)
 
 
-
-
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(BaseModelView):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return (permissions.AllowAny(), )
+        elif self.request.method == 'GET':
+            if self.action == 'list':
+                return (IsAdmin(), )
+            elif self.action == 'retrieve':
+                return (IsUserOwner(),)
+        return (IsAdmin(), )
+

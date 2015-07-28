@@ -14,8 +14,8 @@ user_list = UserViewSet.as_view({
 
 
 urlpatterns = [
-    url('^login$', views.login),
-    url('^logout$', views.logout),
+    url('^login/$', views.login),
+    url('^logout/$', views.logout),
     url(r'^users/$', user_list),
     url(r'^users/(?P<pk>.+)/$', user_detail)
 ]

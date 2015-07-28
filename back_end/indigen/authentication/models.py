@@ -38,6 +38,7 @@ class User(AbstractBaseUser):
     introduction = models.CharField(max_length=500,null=True)
 
     reply_average_second = models.IntegerField(null=True)
+    is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
 
