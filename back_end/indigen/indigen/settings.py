@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+ROOT_DIR = os.path.abspath(os.path.join(ROOT_DIR, os.pardir))
 
-
+print "[check] django indigen base dir is: " + BASE_DIR
+print "[check] project dir is: " + ROOT_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -84,8 +87,6 @@ DATABASES = {
     }
 }
 
-print "database config file:"
-print BASE_DIR + '/back_end/indigen/config.conf'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -105,12 +106,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/front_end/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(ROOT_DIR, 'front_end/static'),
 )
+
+print '[check] ' + 'static file: ' + str(STATICFILES_DIRS)
+
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

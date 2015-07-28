@@ -13,7 +13,7 @@ build
 node_modules/
 
 # Bower components
-static/bower_components/
+front_end/static/bower_components/
 
 # Uglified JavaScript
 dist/
@@ -21,5 +21,9 @@ dist/
 # Staticfiles
 staticfiles/
 
-#.idea
-.idea
+# .idea
+.idea/
+
+# database config file
+back_end/indigen/config.conf
+

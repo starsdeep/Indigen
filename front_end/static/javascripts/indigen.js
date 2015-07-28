@@ -5,7 +5,8 @@
         .module('indigen', [
             'indigen.config',
             'indigen.routes',
-            'indigen.authentication'
+            'indigen.authentication',
+            'indigen.layout'
         ]);
 
     angular
