@@ -19,28 +19,35 @@ from authentication.permissions import IsAdmin
 
 @api_view(['POST'])
 def login(request):
-    username = request.data['username']
-    password = request.data['password']
-    user = authenticate(username=username, password=password)
-    res = {'res': 0, "msg": ""}
+
+    try:
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(username=username, password=password)
+    except:
+        return Response({"message":"can not login using retrieve data"}, status.HTTP_400_BAD_REQUEST)
+
+    result = False
+    msg = ""
 
     if user is not None:
         if user.is_active:
             auth_login(request, user)
-            res['res'] = 1
-            res['msg'] = "login success"
+            result = True
+            msg = "login success"
         else:
-            res['res']= 0
-            res['msg'] = "have not active"
+            result = False
+            msg = "have not active"
     else:
-        res['res'] = 0
-        res['msg'] = "username or password is error"
+        result = False
+        msg = "username or password is error"
 
-    if res['res'] == 1:
+    if result:
         http_status = status.HTTP_200_OK
     else:
         http_status = status.HTTP_400_BAD_REQUEST
-    return Response({"message": res['msg']}, http_status)
+
+    return Response({"message": msg}, http_status)
 
 
 @api_view(('GET','POST'))
@@ -77,6 +84,26 @@ class BaseModelView(viewsets.ModelViewSet):
                 self.permission_denied(request)
 
 
+
+@api_view(('GET','POST'))
+def logout(request):
+    auth_logout(request)
+    return Response({"message": "logout success"}, status.HTTP_200_OK)
+
+
+
+@api_view(('GET', ) )
+def profile(request):
+    try:
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data, status.HTTP_200_OK)
+    except:
+        return Response({"message":"can not access your profile, login first"}, status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
 class UserViewSet(BaseModelView):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -96,7 +123,7 @@ class UserViewSet(BaseModelView):
 
     def create(self, request, *args, **kwargs):
         try:
-            username = request.DATA['username']
+            username = request.DATA['telephone']
             password = request.DATA['password']
             User.objects.create_user(username, password)
             return Response(request.DATA, status.HTTP_200_OK)
