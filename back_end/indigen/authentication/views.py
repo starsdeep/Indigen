@@ -94,3 +94,12 @@ class UserViewSet(BaseModelView):
                 return (IsUserOwner(),)
         return (IsAdmin(), )
 
+    def create(self, request, *args, **kwargs):
+        try:
+            username = request.DATA['username']
+            password = request.DATA['password']
+            User.objects.create_user(username, password)
+            return Response(request.DATA, status.HTTP_200_OK)
+        except:
+            return Response({"message":"can not register user using received data"},
+                            status.HTTP_400_BAD_REQUEST)

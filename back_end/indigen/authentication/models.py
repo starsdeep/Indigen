@@ -40,6 +40,8 @@ class User(AbstractBaseUser):
     reply_average_second = models.IntegerField(null=True)
     is_admin = models.BooleanField(default=False)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+
     USERNAME_FIELD = 'username'
 
     objects = MyUserManager()
