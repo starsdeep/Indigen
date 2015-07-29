@@ -8,7 +8,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'indigen.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^', include('authentication.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/v1/', include('authentication.urls')),
     url('^.*$', IndexView.as_view(), name='index')
 )
