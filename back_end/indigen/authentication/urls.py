@@ -19,5 +19,6 @@ urlpatterns = [
     url('^login/$', views.login),
     url('^logout/$', views.logout),
     url(r'^users/$', user_list),
-    url(r'^users/(?P<pk>.+)/$', user_detail)
+    url(r'^users/(?P<pk>.+)/$', user_detail),
+    url('^profile/$', views.profile)
 ]

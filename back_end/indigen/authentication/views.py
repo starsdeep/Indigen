@@ -4,7 +4,6 @@ from rest_framework.decorators import api_view
 from authentication.models import User
 from authentication.serializers import UserSerializer
 
-
 from rest_framework.response import Response
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -17,7 +16,7 @@ from authentication.permissions import IsUserOwner
 from authentication.permissions import IsAdmin
 
 
-@api_view(['POST'])
+@api_view(('POST', ) )
 def login(request):
 
     try:
@@ -34,7 +33,8 @@ def login(request):
         if user.is_active:
             auth_login(request, user)
             result = True
-            msg = "login success"
+            serializer = UserSerializer(request.user)
+            return Response(serializer.data, status.HTTP_200_OK)
         else:
             result = False
             msg = "have not active"
@@ -99,10 +99,6 @@ def profile(request):
         return Response(serializer.data, status.HTTP_200_OK)
     except:
         return Response({"message":"can not access your profile, login first"}, status.HTTP_400_BAD_REQUEST)
-
-
-
-
 
 class UserViewSet(BaseModelView):
     """

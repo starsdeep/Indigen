@@ -11,12 +11,12 @@ Indigen API is api for Indigen
 Resource related to user
 
 
-## Users Collection [/users/]
+## Users Collection [/api/v1/users/]
 
 
 ### List All Users [GET]
 
-+ Response 200(application/json)
++ Response 200 (application/json)
 
         [
             {
@@ -39,7 +39,7 @@ this is register api
 + password(string)
 + captcha(string)
 
-+ Request (application/json)
++ Request  (application/json)
 
         {
             "telephone":"13177979839",
@@ -49,18 +49,16 @@ this is register api
         }
 
 
-+ Response 201(application/json)
++ Response 201 (application/json)
     
-    + Body
+        {
+            "message":"success"
+        }
 
-            {
-                "message":"success"
-            }
-
-## Users [/users/{user_id}/]
+## Users [/api/v1/users/{user_id}/]
 
 + Parameters
-    + user_id (number) - ID of the User in the form of an integer
+    + user_id (string) - ID of the User in the form of an integer
 
 
 ### View a User Detail [GET]
@@ -72,29 +70,90 @@ this is register api
             "nickname":"tom",            
         }
 
-## User Login [/login/]
+## User Login [/api/v1/login/]
 
 ### user login [POST]
 
 + username(string)
 + password(string)
 
-+ Request (application/json)
++ Request  (application/json)
 
         {
             "username":"yourusername",
             "password":"yourpassword"
         }
 
-+ Response 200(application/json)
++ Response 200 (application/json)
 
         {
-            "message":"login success"
+            "username": "user3",
+            "email": null,
+            "last_login": "2015-07-28T11:00:12Z",
+            "telephone": null,
+            "location_country": null,
+            "location_city": null,
+            "nickname": null,
+            "avatar": null,
+            "live_start_year": 0,
+            "is_male": null,
+            "birthday": null,
+            "introduction": null,
+            "reply_average_second": null
         }
 
-+ Response 400(application/json)
+
++ Response 400 (application/json)
 
         {
             "message":"username or password is error"
         }
+## Get Login User Profile [/api/v1/profile/]
+
+### Get Login User Profile [GET]
+
++ Response 200 (application/json)
+
+        {
+            "username": "user3",
+            "email": null,
+            "last_login": "2015-07-28T11:00:12Z",
+            "telephone": null,
+            "location_country": null,
+            "location_city": null,
+            "nickname": null,
+            "avatar": null,
+            "live_start_year": 0,
+            "is_male": null,
+            "birthday": null,
+            "introduction": null,
+            "reply_average_second": null
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "can not access your profile, login first"
+        }
+
+# Group Locations
+
+About country, city
+
+## Country Collection [/api/v1/countrys/]
+
+### Get Country List [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "name":"中国",
+                "telephone_prefix":"86",                
+            },
+            {
+                "name":"美国",
+                "telephone_prefix":"1"
+            }
+        ]
 
