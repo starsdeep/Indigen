@@ -30,7 +30,7 @@ Resource related to user
             
         ]
 
-### Create new User [POST]
+### Create new User, Register a new User [POST]
 
 this is register api
 
@@ -53,6 +53,18 @@ this is register api
     
         {
             "message":"success"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "errors": 
+            {
+                "telephone": [
+                "telephone already exists, you can login directly"
+                ]
+            },
+            "message": "can not register user using received data"
         }
 
 ## Users [/api/v1/users/{user_id}/]
@@ -108,6 +120,7 @@ this is register api
         {
             "message":"username or password is error"
         }
+        
 ## Get Login User Profile [/api/v1/profile/]
 
 ### Get Login User Profile [GET]

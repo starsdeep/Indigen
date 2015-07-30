@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 
 from authentication.models import User
 from authentication.serializers import UserSerializer
+from authentication.forms import RegisterModel
 
 from rest_framework.response import Response
 from django.contrib.auth import login as auth_login
@@ -14,6 +15,8 @@ from rest_framework import status
 from rest_framework import permissions
 from authentication.permissions import IsUserOwner
 from authentication.permissions import IsAdmin
+
+from django.forms.forms import ValidationError
 
 
 @api_view(('POST', ) )
@@ -119,10 +122,25 @@ class UserViewSet(BaseModelView):
 
     def create(self, request, *args, **kwargs):
         try:
-            username = request.DATA['telephone']
-            password = request.DATA['password']
-            User.objects.create_user(username, password)
-            return Response(request.DATA, status.HTTP_200_OK)
+            data = request.DATA
+            errors = {}
+
+            try:
+                r = RegisterModel(telephone=data['telephone'],password=data['password'])
+                r.full_clean()
+            except ValidationError,e:
+                errors = e.message_dict
+
+            if len(errors) == 0:
+                User.objects.create_user(data['telephone'], data["password"])
+                return Response(request.DATA, status.HTTP_200_OK)
+            else:
+                return Response(
+                        {
+                            "message": "can not register user using received data",
+                            "errors": errors,
+                        },
+                        status.HTTP_400_BAD_REQUEST)
         except:
             return Response({"message":"can not register user using received data"},
                             status.HTTP_400_BAD_REQUEST)
