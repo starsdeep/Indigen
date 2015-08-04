@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 from django.db import models
-
+from location.models import Country
+from django.forms import forms
 
 class MyUserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -19,7 +20,7 @@ class MyUserManager(BaseUserManager):
         """
         user = self.create_user(username,password)
         user.is_admin = True
-        user.save(using=self._db)
+        user.save()
         return user
 
 class User(AbstractBaseUser):
@@ -46,7 +47,18 @@ class User(AbstractBaseUser):
 
     objects = MyUserManager()
 
+    def clean(self):
+        errors = {}
+        telephone = self.telephone
+        user = User.objects.filter(username=telephone)
+        if len(user) > 0:
+            errors["telephone"] = "telephone already exists, you can login directly"
 
+        if self.country != "":
+            country_list = Country.objects.filter(name=self.country)
+            if len(country_list) == 0:
+                errors["country"] = "county not found"
+        raise forms.ValidationError(errors)
 
 class Local(models.Model):
     user = models.OneToOneField('User')

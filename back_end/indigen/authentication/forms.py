@@ -13,7 +13,7 @@ class RegisterModel(models.Model):
         abstract = True
 
     telephone = models.CharField(max_length=20, null=True)
-    nickname = models.CharField(max_length=20,null=True,blank=False,default="")
+    nickname = models.CharField(max_length=20,null=False,blank=False,default="")
     password = models.CharField(max_length=128,blank=False,default="")
     country = models.CharField(max_length=30, default="", blank=False)
 
@@ -26,6 +26,9 @@ class RegisterModel(models.Model):
         if len(user) > 0:
             errors["telephone"] = "telephone already exists, you can login directly"
 
-        if self.country != "" and len(Country.objects.filter(name=self.country)) == 0:
-            errors["country"] = "county not found"
+        if self.country != "":
+            country_list = Country.objects.filter(name=self.country)
+
+            if len(country_list) == 0:
+                errors["country"] = "county not found"
         raise forms.ValidationError(errors)

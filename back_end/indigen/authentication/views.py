@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-
+import sys
+from location.models import Country
 from authentication.models import User
 from authentication.serializers import UserSerializer
 from authentication.forms import RegisterModel
@@ -103,11 +104,15 @@ class UserViewSet(BaseModelView):
             try:
                 r = RegisterModel(**data)
                 r.full_clean()
-            except ValidationError,e:
+            except ValidationError, e:
                 errors = e.message_dict
+            except:
+                print "Unexpected error:", sys.exc_info()[0]
 
             if len(errors) == 0:
-                User.objects.create_user(data['telephone'], data["password"])
+                country = Country.objects.filter(name=data['country'][0])
+                data['country'] = country
+                User.objects.create_user(**data)
                 return Response(request.DATA, status.HTTP_200_OK)
             else:
                 return Response(
