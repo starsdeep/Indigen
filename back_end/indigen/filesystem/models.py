@@ -12,7 +12,7 @@ class File(models.Model):
     upload_at = models.DateTimeField(auto_now_add=True)
     format = models.CharField(max_length=30, null=True)
     size = models.IntegerField(null=False)
-    address = models.CharField(unique=True, max_length=200, null=False)
+    address = models.FileField(upload_to="documents/%Y/%m/%d")
 
 
 class Image(File):

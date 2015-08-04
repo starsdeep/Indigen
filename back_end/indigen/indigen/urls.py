@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
 from indigen.views import IndexView
 
 
@@ -9,5 +8,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^api/v1/', include('authentication.urls')),
+    url(r'^api/v1/', include('location.urls')),
+    url(r'^api/v1/', include('filesystem.urls')),
     url('^.*$', IndexView.as_view(), name='index')
 )
