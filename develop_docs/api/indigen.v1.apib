@@ -37,6 +37,7 @@ this is register api
 + telephone(string)
 + nickname(string)
 + password(string)
++ country(string)
 + captcha(string)
 
 + Request  (application/json)
@@ -53,7 +54,11 @@ this is register api
 + Response 201 (application/json)
     
         {
-            "message":"success"
+            "telephone":"13177979839",
+            "nickname":"tom",
+            "password":"nopassword",
+            "captha":"135214",
+            "country":"泰国",
         }
 
 + Response 400 (application/json)
@@ -112,7 +117,8 @@ this is register api
             "is_male": null,
             "birthday": null,
             "introduction": null,
-            "reply_average_second": null
+            "reply_average_second": null,
+            "token"
         }
 
 

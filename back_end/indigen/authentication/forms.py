@@ -17,11 +17,27 @@ class RegisterModel(models.Model):
     password = models.CharField(max_length=128,blank=False,default="")
     country = models.CharField(max_length=30, default="", blank=False)
 
+    def to_python(self, value):
+        try:
+            return value[0]
+        except:
+            return value
 
+    def full_clean(self, exclude=None, validate_unique=True):
+
+        for f in self._meta.fields:
+
+            raw_value = getattr(self, f.attname)
+            try:
+                setattr(self, f.attname, raw_value[0])
+            except:
+                pass
+
+        models.Model.full_clean(self, exclude=None, validate_unique=True)
 
     def clean(self):
         errors = {}
-        telephone = self.telephone
+        telephone = getattr(self, 'telephone')
         user = User.objects.filter(username=telephone)
         if len(user) > 0:
             errors["telephone"] = "telephone already exists, you can login directly"
@@ -30,5 +46,5 @@ class RegisterModel(models.Model):
             country_list = Country.objects.filter(name=self.country)
 
             if len(country_list) == 0:
-                errors["country"] = "county not found"
+                errors["country"] = "country not found"
         raise forms.ValidationError(errors)

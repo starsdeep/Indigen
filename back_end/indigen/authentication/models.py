@@ -4,10 +4,13 @@ from location.models import Country
 from django.forms import forms
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, password=None):
+    def create_user(self, username, password, country, nickname):
 
+        country_obj = Country.objects.get(name=country)
         user = self.model(
-            username = username
+            username = username,
+            nickname = nickname,
+            location_country = country_obj
         )
         user.set_password(password)
         user.save()
@@ -46,6 +49,7 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
     objects = MyUserManager()
+
 
     def clean(self):
         errors = {}

@@ -110,11 +110,16 @@ class UserViewSet(BaseModelView):
                 print "Unexpected error:", sys.exc_info()[0]
 
             if len(errors) == 0:
-                country = Country.objects.filter(name=data['country'][0])
-                data['country'] = country
-                User.objects.create_user(**data)
-                return Response(request.DATA, status.HTTP_200_OK)
+                try:
+                    User.objects.create_user(username=r.telephone, password=r.password, country=r.country, nickname=r.nickname)
+                    return Response(request.DATA, status.HTTP_200_OK)
+                except:
+                    print "unexcepted error:", sys.exc_info()[0]
+                    return Response({"message":"can not register, internal error"},
+                            status.HTTP_400_BAD_REQUEST)
             else:
+
+
                 return Response(
                         {
                             "message": "can not register user using received data",
