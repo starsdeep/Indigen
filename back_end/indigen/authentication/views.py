@@ -4,19 +4,20 @@ from rest_framework.decorators import api_view
 from authentication.models import User
 from authentication.serializers import UserSerializer
 from authentication.forms import RegisterModel
-
 from rest_framework.response import Response
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from rest_framework import viewsets
 from rest_framework import status
-
 from rest_framework import permissions
 from authentication.permissions import IsUserOwner
 from authentication.permissions import IsAdmin
-
 from django.forms.forms import ValidationError
+from base_class.views import BaseModelView
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
+
 
 
 @api_view(('POST', ) )
@@ -37,7 +38,10 @@ def login(request):
             auth_login(request, user)
             result = True
             serializer = UserSerializer(request.user)
-            return Response(serializer.data, status.HTTP_200_OK)
+            user_data = serializer.data
+            token, created = Token.objects.get_or_create(user=user)
+            user_data['token'] = token.key
+            return Response(user_data, status.HTTP_200_OK)
         else:
             result = False
             msg = "have not active"
@@ -57,34 +61,6 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return Response({"message": "logout success"}, status.HTTP_200_OK)
-
-class BaseModelView(viewsets.ModelViewSet):
-    def check_permissions(self, request):
-        """
-        Check if the request should be permitted.
-        Raises an appropriate exception if the request is not permitted.
-        """
-
-        u = IsAdmin()
-
-        if u.has_permission(request,self):
-            return True
-
-        for permission in self.get_permissions():
-            if not permission.has_permission(request, self):
-                self.permission_denied(request)
-
-    def check_object_permissions(self, request, obj):
-        """
-        Check if the request should be permitted for a given object.
-        Raises an appropriate exception if the request is not permitted.
-        """
-        u = IsAdmin()
-        if u.has_object_permission(request,self,obj):
-            return True
-        for permission in self.get_permissions():
-            if not permission.has_object_permission(request, self, obj):
-                self.permission_denied(request)
 
 
 
@@ -124,9 +100,8 @@ class UserViewSet(BaseModelView):
         try:
             data = request.DATA
             errors = {}
-
             try:
-                r = RegisterModel(telephone=data['telephone'],password=data['password'])
+                r = RegisterModel(**data)
                 r.full_clean()
             except ValidationError,e:
                 errors = e.message_dict
