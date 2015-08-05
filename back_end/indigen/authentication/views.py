@@ -71,6 +71,40 @@ def logout(request):
     return Response({"message": "logout success"}, status.HTTP_200_OK)
 
 
+@api_view(('PUT',))
+def password_update(request):
+    if not request.user.is_anonymous():
+        errors = {}
+        try:
+            try:
+                old_password = request.DATA['old_password']
+            except:
+                errors['old_password'] = ["old_password can not be blank", ]
+
+            try:
+                new_password = request.DATA['new_password']
+                assert new_password != ""
+            except:
+                errors['new_password'] = ["new_password can not be blank", ]
+
+
+            if request.user.check_password(old_password):
+                request.user.set_password(new_password)
+                request.user.save()
+                return Response({"message":"update success"}, status.HTTP_200_OK)
+            else:
+                if errors.has_key('old_password'):
+                    errors['old_password'].append("old_password is not correct")
+                else:
+                    errors['old_password'] = ["old_password is not correct", ]
+        except:
+            return Response({"message":"can not update password","errors":errors}, status.HTTP_400_BAD_REQUEST)
+        return Response({"message":"can not update password","errors":errors}, status.HTTP_400_BAD_REQUEST)
+
+    else:
+        return Response({"message": "you should login first"}, status.HTTP_401_UNAUTHORIZED)
+
+
 
 @api_view(('GET', ) )
 def profile(request):

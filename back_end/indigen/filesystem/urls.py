@@ -5,7 +5,6 @@ from filesystem import views
 from filesystem.views import FileUploadView
 
 
-
 urlpatterns = [
     url('^upload_file/$', FileUploadView.as_view()),
 ]
