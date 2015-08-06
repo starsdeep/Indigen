@@ -36,6 +36,7 @@ class User(AbstractBaseUser):
     nickname = models.CharField(max_length=20,null=True)
 
     avatar = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL)
+
     live_start_year = models.IntegerField(default=0, null=False)
     is_male = models.NullBooleanField()
     birthday = models.DateField(null=True)
@@ -45,6 +46,8 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    age = models.CharField(max_length=8, null=True)
 
     USERNAME_FIELD = 'username'
 
