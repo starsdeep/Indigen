@@ -5,9 +5,7 @@ from location.views import CountryViewSet
 
 
 
-country_list = CountryViewSet.as_view({
-    'get': 'list',
-})
+country_list = CountryViewSet.as_view()
 
 
 urlpatterns = [

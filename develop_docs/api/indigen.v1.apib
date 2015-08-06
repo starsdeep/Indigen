@@ -433,21 +433,257 @@ About country, city
 
 ## Country Collection [/api/v1/countrys/]
 
-### Get Country List [GET]
+### Get Country List, you also can sort countrys list add ?ordering=telephone_prefix to the end url. You may also specify reverse orderings by prefixing the field name with '-', like so /api/v1/countrys/?ordering=-telephone_prefix [GET]
 
 + Response 200 (application/json)
 
-        [
+        {
+          "count": 40,
+          "next": null,
+          "previous": null,
+          "results": [
             {
-                "name":"中国",
-                "telephone_prefix":"86",                
+              "full_name": null,
+              "name": "中国",
+              "telephone_prefix": "86",
+              "capital_city": null
             },
             {
-                "name":"美国",
-                "telephone_prefix":"1"
+              "full_name": null,
+              "name": "新加坡",
+              "telephone_prefix": "65",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "韩国",
+              "telephone_prefix": "82",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "泰国",
+              "telephone_prefix": "66",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "日本",
+              "telephone_prefix": "81",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "中国台湾",
+              "telephone_prefix": "886",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "法国",
+              "telephone_prefix": "33",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "意大利",
+              "telephone_prefix": "39",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "西班牙",
+              "telephone_prefix": "34",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "印度尼西亚",
+              "telephone_prefix": "62",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "美国",
+              "telephone_prefix": "1",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "英国",
+              "telephone_prefix": "44",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "斯里兰卡",
+              "telephone_prefix": "94",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "新西兰",
+              "telephone_prefix": "64",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "匈牙利",
+              "telephone_prefix": "36",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "阿联酋",
+              "telephone_prefix": "971",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "菲律宾",
+              "telephone_prefix": "63",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "马来西亚",
+              "telephone_prefix": "60",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "中国香港",
+              "telephone_prefix": "852",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "巴西",
+              "telephone_prefix": "55",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "瑞士",
+              "telephone_prefix": "41",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "俄罗斯",
+              "telephone_prefix": "7",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "秘鲁",
+              "telephone_prefix": "51",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "墨西哥",
+              "telephone_prefix": "52",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "尼泊尔",
+              "telephone_prefix": "977",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "丹麦",
+              "telephone_prefix": "45",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "加拿大",
+              "telephone_prefix": "001",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "德国",
+              "telephone_prefix": "49",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "希腊",
+              "telephone_prefix": "30",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "荷兰",
+              "telephone_prefix": "31",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "比利时",
+              "telephone_prefix": "32",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "斯洛伐克",
+              "telephone_prefix": "421",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "土耳其",
+              "telephone_prefix": "90",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "葡萄牙",
+              "telephone_prefix": "351",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "中国澳门",
+              "telephone_prefix": "853",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "捷克",
+              "telephone_prefix": "420",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "奥地利",
+              "telephone_prefix": "43",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "越南",
+              "telephone_prefix": "84",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "柬埔寨",
+              "telephone_prefix": "855",
+              "capital_city": null
+            },
+            {
+              "full_name": null,
+              "name": "澳大利亚",
+              "telephone_prefix": "61",
+              "capital_city": null
             }
-        ]
-
+          ]
+        }
 
 # Group File
 
