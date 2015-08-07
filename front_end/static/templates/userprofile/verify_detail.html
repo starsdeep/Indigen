@@ -1,0 +1,80 @@
+<div>
+    <form role="form" ng-submit="vm.submit()">
+        <div>
+            性别:
+            <label>
+                <input type="radio" ng-model="vm.detail_info.ismale" value="1"/> 男
+            </label>
+            <span>
+            <label>
+                <input type="radio" ng-model="vm.detail_info.ismale" value="0"/> 女
+            </label>
+
+        </div>
+
+
+        <div>
+            身份:
+
+            留学生 <input type="radio" ng-model="vm.detail_info.vocation_type" value="留学生"/>
+            <span></span>
+            华侨 <input type="radio" ng-model="vm.detail_info.vocation_type" value="华侨"/>
+            <span></span>
+            专业导游 <input type="radio" ng-model="vm.detail_info.vocation_type" value="专业导游"/>
+
+        </div>
+
+
+        <div>
+            语言:
+            <label ng-repeat="language in vm.languages">
+                <input type="checkbox" checklist-model="vm.detail_info.languages" checklist-value="language"> {{language}}
+            </label>
+        </div>
+
+        <div>
+            家乡:
+            <select ng-model="vm.detail_info.native_province">
+                <option value="90">浙江</option>
+                <option value="80">江西</option>
+            </select>
+
+            <select ng-model="vm.detail_info.navtive_city">
+                <option value="90">杭州</option>
+                <option value="80">南昌</option>
+            </select>
+        </div>
+
+        <div>
+            职业:
+            <input type="text" ng-model="vm.detail_info.vocation">
+        </div>
+
+
+        <div>
+            兴趣爱好:
+            <input type="text" ng-model="vm.detail_info.hobbies" rows="5" cols="50"></input>
+        </div>
+
+        <div>
+            个人特色:
+            <label ng-repeat="character in vm.characters">
+                <input type="checkbox" checklist-model="vm.detail_info.characters" checklist-value="character"> {{character}}
+            </label>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
+    Upload Log:
+    <pre>{{vm.log}}</pre>
+
+</div>
+
+
+
+
+        

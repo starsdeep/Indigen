@@ -20,6 +20,14 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: 'front_end/static/templates/authentication/login.html'
+        }).when('/verify_base', {
+            controller: 'VerifyBaseController',
+            controllerAs: 'vm',
+            templateUrl: 'front_end/static/templates/userprofile/verify_base.html'
+        }).when('/verify_detail', {
+            controller: 'VerifyDetailController',
+            controllerAs: 'vm',
+            templateUrl: 'front_end/static/templates/userprofile/verify_detail.html'
         }).otherwise('/')
     }
 

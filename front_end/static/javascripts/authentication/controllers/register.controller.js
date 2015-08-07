@@ -9,12 +9,12 @@
         .module('indigen.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$location', '$scope', 'Authentication'];
+    RegisterController.$inject = ['$location', '$scope', 'userAuthService'];
 
     /**
      * @namespace RegisterController
      */
-    function RegisterController($location, $scope, Authentication) {
+    function RegisterController($location, $scope, userAuthService) {
         var vm = this;
 
         vm.register = register;
@@ -42,7 +42,7 @@
          * @memberOf indigen.authentication.controllers.RegisterController
          */
         function register() {
-            Authentication.register(vm.telephone, vm.nickname, vm.password, vm.captcha);
+            userAuthService.register(vm.telephone, vm.nickname, vm.password, vm.captcha);
         }
     }
 })();

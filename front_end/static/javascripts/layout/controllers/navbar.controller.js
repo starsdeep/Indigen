@@ -9,15 +9,17 @@
     .module('indigen.layout.controllers')
     .controller('NavbarController', NavbarController);
 
-  NavbarController.$inject = ['$scope', 'Authentication'];
+  NavbarController.$inject = ['$scope', 'userAuthService'];
 
   /**
   * @namespace NavbarController
   */
-  function NavbarController($scope, Authentication) {
+  function NavbarController($scope, userAuthService) {
     var vm = this;
-
+    vm.AuthenticatedAccount = userAuthService.getAuthenticatedAccount();
     vm.logout = logout;
+    console.log('narbar auth: ' + JSON.stringify(vm.AuthenticatedAccount));
+
 
     /**
     * @name logout
@@ -25,7 +27,7 @@
     * @memberOf indigen.layout.controllers.NavbarController
     */
     function logout() {
-      Authentication.logout();
+      userAuthService.logout();
     }
   }
 })();

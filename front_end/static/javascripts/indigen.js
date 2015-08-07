@@ -6,14 +6,25 @@
             'indigen.config',
             'indigen.routes',
             'indigen.authentication',
+            'indigen.userprofile',
             'indigen.layout'
-        ]);
+        ])
+        .constant('API', '/api/v1/');
 
     angular
-        .module('indigen.config', []);
+        .module('indigen.config', ['indigen.authentication']);
 
     angular
         .module('indigen.routes', ['ngRoute']);
+
+    angular
+        .module('indigen.anthentication', []);
+
+    angular
+        .module('indigen.userprofile', ['indigen.authentication']);
+
+    angular
+        .module('indigen.layout', ['indigen.authentication']);
 
 
     angular
