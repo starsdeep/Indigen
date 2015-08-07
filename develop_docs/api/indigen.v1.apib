@@ -435,18 +435,51 @@ You need to be userself or administrator
 
 + Request  (application/json)
         
-        {
-          'service_introduction':"我的服务非常好",
+        {        
           'is_male':1,
           'age':'90后',
+          'avatar_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg",
+          'personal_state':'我的服务非常好，哈哈',
+
+
+          'vocation_type':'留学生',
+          'languages':[
+          ],
+          'native_province':'浙江省',
+          'native_city':'杭州市',
+
+          'vocation_name':'职业',                  
+          'hobbies':[],
+          'characters':[],
+          
+          'location_city':'纽约',
+          'live_start_year':1,
+          'id_card_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg"
+
         }
 
 + Response 200 (application/json)
         
-        {         
-          'service_introduction':"我的服务非常好！",
+        {        
           'is_male':1,
-          'age':'90后', 
+          'age':'90后',
+          'avatar_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg",
+          'personal_state':'我的服务非常好，哈哈',
+
+
+          'vocation_type':'留学生',
+          'languages':[
+          ],
+          'native_province':'浙江省',
+          'native_city':'杭州市',
+
+          'vocation_name':'职业',                  
+          'hobbies':[],
+          'characters':[],
+          
+          'location_city':'纽约',
+          'live_start_year':1,
+          'id_card_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg"
         }
 
 + Response 400 (application/json)
