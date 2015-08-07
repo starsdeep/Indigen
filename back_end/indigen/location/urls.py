@@ -9,5 +9,5 @@ country_list = CountryViewSet.as_view()
 
 
 urlpatterns = [
-    url('^countrys/$', country_list),
+    url('^countrys[/]*$', country_list),
 ]
