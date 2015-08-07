@@ -429,7 +429,6 @@ You need to be userself or administrator
 
 ### Update User Profile [PUT]
 
-+ avatar(url string)
 + service_introduction(string)
 + is_male(boolean)
 + age(string)
@@ -489,234 +488,64 @@ About country, city
               "telephone_prefix": "82",
               "capital_city": null
             },
-            {
-              "full_name": null,
-              "name": "泰国",
-              "telephone_prefix": "66",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "日本",
-              "telephone_prefix": "81",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国台湾",
-              "telephone_prefix": "886",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "法国",
-              "telephone_prefix": "33",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "意大利",
-              "telephone_prefix": "39",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "西班牙",
-              "telephone_prefix": "34",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "印度尼西亚",
-              "telephone_prefix": "62",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "美国",
-              "telephone_prefix": "1",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "英国",
-              "telephone_prefix": "44",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "斯里兰卡",
-              "telephone_prefix": "94",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "新西兰",
-              "telephone_prefix": "64",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "匈牙利",
-              "telephone_prefix": "36",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "阿联酋",
-              "telephone_prefix": "971",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "菲律宾",
-              "telephone_prefix": "63",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "马来西亚",
-              "telephone_prefix": "60",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国香港",
-              "telephone_prefix": "852",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "巴西",
-              "telephone_prefix": "55",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "瑞士",
-              "telephone_prefix": "41",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "俄罗斯",
-              "telephone_prefix": "7",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "秘鲁",
-              "telephone_prefix": "51",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "墨西哥",
-              "telephone_prefix": "52",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "尼泊尔",
-              "telephone_prefix": "977",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "丹麦",
-              "telephone_prefix": "45",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "加拿大",
-              "telephone_prefix": "001",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "德国",
-              "telephone_prefix": "49",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "希腊",
-              "telephone_prefix": "30",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "荷兰",
-              "telephone_prefix": "31",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "比利时",
-              "telephone_prefix": "32",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "斯洛伐克",
-              "telephone_prefix": "421",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "土耳其",
-              "telephone_prefix": "90",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "葡萄牙",
-              "telephone_prefix": "351",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国澳门",
-              "telephone_prefix": "853",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "捷克",
-              "telephone_prefix": "420",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "奥地利",
-              "telephone_prefix": "43",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "越南",
-              "telephone_prefix": "84",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "柬埔寨",
-              "telephone_prefix": "855",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "澳大利亚",
-              "telephone_prefix": "61",
-              "capital_city": null
-            }
           ]
         }
 
+
+
 # Group File
 
-## Upload Files Test[/api/v1/upload_file/]
+## Upload  avatar[/api/v1/upload_avatar/]
 
-### upload a file [PUT]
+### upload a file [POST]
+
++ Response 200 (application/json)
+
+        {
+          "username": "username",
+          "email": null,
+          "last_login": "2015-08-07T02:44:02Z",
+          "telephone": null,
+          "location_country": "泰国",
+          "location_city": null,
+          "nickname": "thisnickname",
+          "avatar": "/files/documents/2015/08/07/wechat-image.png",
+          "live_start_year": 0,
+          "is_male": null,
+          "birthday": null,
+          "introduction": null,
+          "reply_average_second": null,
+          "age": null,
+          "id_card": "/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg",
+          "service_introduction": ""
+        }        
+
+## Upload  id card [/api/v1/upload_id_card/]
+
+### upload id card [POST]
+
++ Response 200 (application/json)
+
+        {
+          "username": "username",
+          "email": null,
+          "last_login": "2015-08-07T02:44:02Z",
+          "telephone": null,
+          "location_country": "泰国",
+          "location_city": null,
+          "nickname": "thisnickname",
+          "avatar": "/files/documents/2015/08/07/wechat-image.png",
+          "live_start_year": 0,
+          "is_male": null,
+          "birthday": null,
+          "introduction": null,
+          "reply_average_second": null,
+          "age": null,
+          "id_card": "/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg",
+          "service_introduction": ""
+        }
+
+
+
+
 

@@ -37,6 +37,7 @@ class User(AbstractBaseUser):
 
     avatar = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL)
 
+
     live_start_year = models.IntegerField(default=0, null=False)
     is_male = models.NullBooleanField()
     birthday = models.DateField(null=True)
@@ -72,5 +73,5 @@ class Local(models.Model):
     service_reply_average_second = models.IntegerField(null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10,null=True)
     service_introduction = models.CharField(max_length=300)
-
+    id_card = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL)
 

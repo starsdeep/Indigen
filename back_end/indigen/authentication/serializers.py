@@ -18,6 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
             pass
 
         try:
+            data['id_card'] = user.local.id_card.address.url
+        except:
+            pass
+
+        try:
             data['service_introduction'] = user.local.service_introduction
         except:
             pass
