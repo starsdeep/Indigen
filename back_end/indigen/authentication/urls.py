@@ -3,6 +3,7 @@ __author__ = 'fucus'
 from django.conf.urls import url
 from authentication import views
 from authentication.views import UserViewSet
+from authentication.views import Profile
 
 user_detail = UserViewSet.as_view({
     'get': 'retrieve'
@@ -21,5 +22,5 @@ urlpatterns = [
     url('^users/password/$',views.password_update),
     url(r'^users/$', user_list),
     url(r'^users/(?P<pk>.+)/$', user_detail),
-    url('^profile/$', views.profile)
+    url('^profile/$', Profile.as_view())
 ]

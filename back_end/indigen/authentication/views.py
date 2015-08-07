@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 import sys
 from location.models import Country
-from authentication.models import User
+from authentication.models import User, Local
 from authentication.serializers import UserSerializer
 from authentication.forms import RegisterModel
 from rest_framework.response import Response
@@ -18,8 +18,10 @@ from django.forms.forms import ValidationError
 from base_class.views import BaseModelView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-
-
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from filesystem.models import Image
+from base_class import functions
 
 @api_view(('POST', ) )
 def login(request):
@@ -64,13 +66,6 @@ def logout(request):
     return Response({"message": "logout success"}, status.HTTP_200_OK)
 
 
-
-@api_view(('GET','POST'))
-def logout(request):
-    auth_logout(request)
-    return Response({"message": "logout success"}, status.HTTP_200_OK)
-
-
 @api_view(('PUT',))
 def password_update(request):
     if not request.user.is_anonymous():
@@ -106,13 +101,49 @@ def password_update(request):
 
 
 
-@api_view(('GET', ) )
-def profile(request):
-    try:
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data, status.HTTP_200_OK)
-    except:
-        return Response({"message":"can not access your profile, login first"}, status.HTTP_400_BAD_REQUEST)
+class Profile(APIView):
+    """
+    get profile
+    update profile
+    """
+
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request, format=None):
+        try:
+            serializer = UserSerializer(request.user)
+            return Response(serializer.data, status.HTTP_200_OK)
+        except:
+            return Response({"message":"can not access your profile, login first"}, status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, format=None):
+        user = request.user
+        try:
+            user.age = request.DATA['age']
+        except:
+            pass
+
+        try:
+            user.local.service_introduction = request.DATA['service_introduction']
+            user.local.save()
+        except:
+            local = Local(user=user)
+            local.service_introduction = request.DATA['service_introduction']
+            local.save()
+
+        try:
+            user.is_male = request.DATA['is_male']
+        except:
+            pass
+
+        try:
+            user.save()
+            u = UserSerializer(request.user)
+            return Response(u.data, status.HTTP_200_OK)
+        except:
+            return Response({"message": "internal error, fail to update profile"}, status.HTTP_400_BAD_REQUEST)
+
+
 
 class UserViewSet(BaseModelView):
     """

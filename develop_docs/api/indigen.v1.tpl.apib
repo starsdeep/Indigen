@@ -11,7 +11,7 @@ Indigen API is api for Indigen
 Resource related to user
 
 
-## Users Collection [/api/v1/users/]
+## Users Collection [/{api_prefix}/users/]
 
 
 ### List All Users [GET]
@@ -310,7 +310,7 @@ this is register api
         }
 
 
-## Update uesr's password [/api/v1/users/password/]
+## Update uesr's password [/{api_prefix}/users/password/]
 
 ### Update user's password [PUT]
 
@@ -342,7 +342,7 @@ this is register api
             }
         }
 
-## Users [/api/v1/users/{user_id}/]
+## Users [/{api_prefix}/users/{user_id}/]
 
 You need to be userself or administrator
 
@@ -359,7 +359,7 @@ You need to be userself or administrator
             "nickname":"tom",            
         }
 
-## User Login [/api/v1/login/]
+## User Login [/{api_prefix}/login/]
 
 ### user login [POST]
 
@@ -399,7 +399,7 @@ You need to be userself or administrator
             "message":"username or password is error"
         }
 
-## Get Login User Profile [/api/v1/profile/]
+## Get Login User Profile [/{api_prefix}/profile/]
 
 ### Get Login User Profile [GET]
 
@@ -460,9 +460,9 @@ You need to be userself or administrator
 
 About country, city
 
-## Country Collection [/api/v1/countrys/]
+## Country Collection [/{api_prefix}/countrys/]
 
-### Get Country List, you also can sort countrys list add ?ordering=telephone_prefix to the end url. You may also specify reverse orderings by prefixing the field name with '-', like so /api/v1/countrys/?ordering=-telephone_prefix [GET]
+### Get Country List, you also can sort countrys list add ?ordering=telephone_prefix to the end url. You may also specify reverse orderings by prefixing the field name with '-', like so /{api_prefix}/countrys/?ordering=-telephone_prefix [GET]
 
 + Response 200 (application/json)
 
@@ -716,7 +716,7 @@ About country, city
 
 # Group File
 
-## Upload Files Test[/api/v1/upload_file/]
+## Upload Files Test[/{api_prefix}/upload_file/]
 
 ### upload a file [PUT]
 

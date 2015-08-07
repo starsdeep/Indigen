@@ -70,7 +70,7 @@ class User(AbstractBaseUser):
 class Local(models.Model):
     user = models.OneToOneField('User')
     service_reply_average_second = models.IntegerField(null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
+    price = models.DecimalField(decimal_places=2, max_digits=10,null=True)
     service_introduction = models.CharField(max_length=300)
 
 
