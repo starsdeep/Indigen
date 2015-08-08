@@ -17,7 +17,7 @@
     function VerifyBaseController($location, $scope, Upload, API ,userAuthService, userProfileService) {
         var vm = this;
         vm.submit = submit;
-        vm.base_info = {
+        vm.formdata = {
             'ismale': '',
             'age': '',
             'service_introduction': ''
@@ -33,7 +33,7 @@
 
 
         function submit() {
-            userProfileService.updateUserProfile(vm.base_info).then(updateSuccessFn, updateErrorFn);
+            userProfileService.updateUserProfile(vm.formdata).then(updateSuccessFn, updateErrorFn);
 
             function updateSuccessFn(data, status, headers, config) {
                 console.log('success');
@@ -98,7 +98,7 @@
                 $location.url('/login');
             }
 
-            vm.base_info = userProfileService.getUserProfile(Object.keys(vm.base_info));
+            vm.formdata = userProfileService.getUserProfile(Object.keys(vm.formdata));
         }
 
 

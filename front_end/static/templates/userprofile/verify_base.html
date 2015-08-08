@@ -13,18 +13,18 @@
         <div>
             性别:
             <label>
-            <input type="radio" ng-model="vm.base_info.ismale"  value="1" /> 男
+            <input type="radio" ng-model="vm.formdata.ismale"  value="1" /> 男
             </label>
             <span>
             <label>
-            <input type="radio" ng-model="vm.base_info.ismale"  value="0" /> 女
+            <input type="radio" ng-model="vm.formdata.ismale"  value="0" /> 女
             </label>
 
         </div>
 
         <div>
             年龄
-            <select name="age" ng-model="vm.base_info.age" id="age">
+            <select name="age" ng-model="vm.formdata.age" id="age">
                 <option value="90">90后</option>
                 <option value="80">80后</option>
                 <option value="70">70后</option>
@@ -35,7 +35,7 @@
 
         <div>
             自我介绍
-            <textarea name="ps" id="ps" ng-model="vm.base_info.service_introduction" rows="5" cols="50"></textarea>
+            <textarea name="ps" id="ps" ng-model="vm.formdata.service_introduction" rows="5" cols="50"></textarea>
         </div>
 
         <div class="form-group">

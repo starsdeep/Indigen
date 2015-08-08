@@ -28,6 +28,10 @@
             controller: 'VerifyDetailController',
             controllerAs: 'vm',
             templateUrl: 'front_end/static/templates/userprofile/verify_detail.html'
+        }).when('/verify_real', {
+            controller: 'VerifyRealController',
+            controllerAs: 'vm',
+            templateUrl: 'front_end/static/templates/userprofile/verify_real.html'
         }).otherwise('/')
     }
 

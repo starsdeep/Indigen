@@ -22,7 +22,7 @@
         vm.characters = ['购物狂人', '夜店达人', '背包客'];
 
 
-        vm.detail_info = {
+        vm.formdata = {
             'vocation_type': '',
             'languages': ['普通话'],
             'native_province': '',
@@ -35,7 +35,7 @@
         activate();
 
         function submit() {
-            userProfileService.updateUserProfile(vm.detail_info);
+            userProfileService.updateUserProfile(vm.formdata);
         }
         
 
@@ -53,7 +53,7 @@
                 $location.url('/login');
             }
 
-            vm.detail_info = userProfileService.getUserProfile(Object.keys(vm.detail_info));
+            vm.formdata = userProfileService.getUserProfile(Object.keys(vm.formdata));
         }
 
     }

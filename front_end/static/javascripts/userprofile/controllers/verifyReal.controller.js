@@ -1,5 +1,5 @@
 /**
- * VerifyBaseController
+ * VerifyRealController
  * @namespace indigen.authentication.controllers
  */
 (function () {
@@ -7,24 +7,23 @@
 
     angular
         .module('indigen.userprofile.controllers')
-        .controller('VerifyBaseController', VerifyBaseController);
+        .controller('VerifyRealController', VerifyRealController);
 
-    VerifyBaseController.$inject = ['$location', '$scope', 'Upload', 'API', 'userAuthService', 'userProfileService'];
+    VerifyRealController.$inject = ['$location', '$scope', 'Upload', 'API', 'userAuthService', 'userProfileService'];
 
     /**
-     * @namespace VerifyBaseController
+     * @namespace VerifyRealController
      */
-    function VerifyBaseController($location, $scope, Upload, API ,userAuthService, userProfileService) {
+    function VerifyRealController($location, $scope, Upload, API ,userAuthService, userProfileService) {
         var vm = this;
         vm.submit = submit;
-
-
-
-        vm.base_info = {
-            'ismale': '',
-            'age': '',
-            'service_introduction': ''
+        vm.formdate = {
+            'verify_country': '',
+            'verify_telephone': '',
+            'verify_city': '',
+            'live_start_year': ''
         };
+
 
         activate();
 
@@ -36,18 +35,18 @@
 
 
         function submit() {
-            userProfileService.updateUserProfile(vm.base_info).then(updateSuccessFn, updateErrorFn);
+            userProfileService.updateUserProfile(vm.formdate).then(updateSuccessFn, updateErrorFn);
 
             function updateSuccessFn(data, status, headers, config) {
                 console.log('success');
-                $location.url('/verify_detail');
+                //$location.url('/verify_detail');
             }
 
             function updateErrorFn(data, status, headers, config) {
                 console.error('Epic failure!');
             };
         }
-        
+
 
 
 
@@ -88,10 +87,11 @@
             }
         };
 
+
         /**
          * @name activate
          * @desc Actions to be performed when this controller is instantiated
-         * @memberOf indigen.authentication.controllers.VerifyBaseController
+         * @memberOf indigen.authentication.controllers.VerifyRealController
          */
         function activate() {
             // If the user is not authenticated, they should login in first.
@@ -101,7 +101,7 @@
                 $location.url('/login');
             }
 
-            vm.base_info = userProfileService.getUserProfile(Object.keys(vm.base_info));
+            vm.formdate = userProfileService.getUserProfile(Object.keys(vm.formdate));
         }
 
 
