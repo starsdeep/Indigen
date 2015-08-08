@@ -14,7 +14,7 @@ Resource related to user
 ## Users Collection [/api/v1/users/]
 
 
-### List All Users [GET]
+### List All Users, you should be administrator [GET]
 
 + Response 200 (application/json)
 
@@ -41,228 +41,6 @@ Resource related to user
               "telephone_prefix": "82",
               "capital_city": null
             },
-            {
-              "full_name": null,
-              "name": "泰国",
-              "telephone_prefix": "66",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "日本",
-              "telephone_prefix": "81",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国台湾",
-              "telephone_prefix": "886",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "法国",
-              "telephone_prefix": "33",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "意大利",
-              "telephone_prefix": "39",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "西班牙",
-              "telephone_prefix": "34",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "印度尼西亚",
-              "telephone_prefix": "62",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "美国",
-              "telephone_prefix": "1",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "英国",
-              "telephone_prefix": "44",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "斯里兰卡",
-              "telephone_prefix": "94",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "新西兰",
-              "telephone_prefix": "64",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "匈牙利",
-              "telephone_prefix": "36",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "阿联酋",
-              "telephone_prefix": "971",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "菲律宾",
-              "telephone_prefix": "63",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "马来西亚",
-              "telephone_prefix": "60",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国香港",
-              "telephone_prefix": "852",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "巴西",
-              "telephone_prefix": "55",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "瑞士",
-              "telephone_prefix": "41",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "俄罗斯",
-              "telephone_prefix": "7",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "秘鲁",
-              "telephone_prefix": "51",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "墨西哥",
-              "telephone_prefix": "52",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "尼泊尔",
-              "telephone_prefix": "977",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "丹麦",
-              "telephone_prefix": "45",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "加拿大",
-              "telephone_prefix": "001",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "德国",
-              "telephone_prefix": "49",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "希腊",
-              "telephone_prefix": "30",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "荷兰",
-              "telephone_prefix": "31",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "比利时",
-              "telephone_prefix": "32",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "斯洛伐克",
-              "telephone_prefix": "421",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "土耳其",
-              "telephone_prefix": "90",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "葡萄牙",
-              "telephone_prefix": "351",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "中国澳门",
-              "telephone_prefix": "853",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "捷克",
-              "telephone_prefix": "420",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "奥地利",
-              "telephone_prefix": "43",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "越南",
-              "telephone_prefix": "84",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "柬埔寨",
-              "telephone_prefix": "855",
-              "capital_city": null
-            },
-            {
-              "full_name": null,
-              "name": "澳大利亚",
-              "telephone_prefix": "61",
-              "capital_city": null
-            }
           ]
         }
 
@@ -270,31 +48,31 @@ Resource related to user
 
 this is register api
 
-+ telephone(string)
++ register_telephone(string)
 + nickname(string)
 + password(string)
-+ country(string)
++ register_country(string)
 + captcha(string)
 
 + Request  (application/json)
 
-        {
-            "telephone":"13177979839",
+        {            
             "nickname":"tom",
             "password":"nopassword",
             "captha":"135214",
-            "country":"泰国",
+            'register_country':'中国',
+            'register_telephone':'123212313',
         }
 
 
 + Response 201 (application/json)
     
-        {
-            "telephone":"13177979839",
+        {            
             "nickname":"tom",
             "password":"nopassword",
             "captha":"135214",
-            "country":"泰国",
+            'register_country':'中国',
+            'register_telephone':'123212313',
         }
 
 + Response 400 (application/json)
@@ -302,7 +80,7 @@ this is register api
         {
             "errors": 
             {
-                "telephone": [
+                "register_telephone": [
                 "telephone already exists, you can login directly"
                 ]
             },
@@ -355,7 +133,7 @@ You need to be userself or administrator
 + Response 200 (application/json)
 
         {
-            "telephone":"13177979839",
+            "register_telephone":"13177979839",
             "nickname":"tom",            
         }
 
@@ -378,17 +156,7 @@ You need to be userself or administrator
         {
             "username": "user3",
             "email": null,
-            "last_login": "2015-07-28T11:00:12Z",
-            "telephone": null,
-            "location_country": null,
-            "location_city": null,
-            "nickname": null,
-            "avatar": null,
-            "live_start_year": 0,
-            "is_male": null,
-            "birthday": null,
-            "introduction": null,
-            "reply_average_second": null,
+            "last_login": "2015-07-28T11:00:12Z",            
             "token": "11277e8b3b245a7d19b72542e4fec31fbfd86052"
         }
 
@@ -408,17 +176,7 @@ You need to be userself or administrator
         {
             "username": "user3",
             "email": null,
-            "last_login": "2015-07-28T11:00:12Z",
-            "telephone": null,
-            "location_country": null,
-            "location_city": null,
-            "nickname": null,
-            "avatar": null,
-            "live_start_year": 0,
-            "is_male": null,
-            "birthday": null,
-            "introduction": null,
-            "reply_average_second": null
+            "last_login": "2015-07-28T11:00:12Z",            
         }
 
 + Response 400 (application/json)
@@ -439,7 +197,7 @@ You need to be userself or administrator
           'is_male':1,
           'age':'90后',
           'avatar_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg",
-          'personal_state':'我的服务非常好，哈哈',
+          'personal_statement':'我的服务非常好，哈哈',
 
 
           'vocation_type':'留学生',
@@ -451,8 +209,10 @@ You need to be userself or administrator
           'vocation_name':'职业',                  
           'hobbies':[],
           'characters':[],
-          
-          'location_city':'纽约',
+
+          'verify_country': '泰国',
+          'verify_city':'曼谷',
+          'verify_telephone':'15124131',
           'live_start_year':1,
           'id_card_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg"
 
@@ -477,7 +237,7 @@ You need to be userself or administrator
           'hobbies':[],
           'characters':[],
           
-          'location_city':'纽约',
+          'verify_city':'纽约',
           'live_start_year':1,
           'id_card_url':"/files/documents/2015/08/07/photo-592-mohu-bigger-15.jpg"
         }
@@ -524,7 +284,7 @@ About country, city
           ]
         }
 
-        
+
 
 
 
