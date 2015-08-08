@@ -22,6 +22,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from filesystem.models import Image
 from base_class import functions
+from location.models import City
+import json
 
 @api_view(('POST', ) )
 def login(request):
@@ -109,6 +111,22 @@ class Profile(APIView):
 
     permission_classes = (IsAuthenticated, )
 
+    safe_char_field = [
+        'is_male', 'age', 'live_start_year'
+        , 'personal_statement', 'vocation_type','native_province',
+        'native_city', 'vocation_name', 'verify_telephone'
+    ]
+
+    safe_url_field = [
+        'avatar_url', 'id_card_url'
+    ]
+
+    safe_list_field = [
+        'languages', 'hobbies', 'characters'
+    ]
+
+    foreign_key = ['verify_city', 'verify_country']
+
     def get(self, request, format=None):
         try:
             serializer = UserSerializer(request.user)
@@ -118,30 +136,67 @@ class Profile(APIView):
 
     def put(self, request, format=None):
         user = request.user
-        try:
-            user.age = request.DATA['age']
-        except:
-            pass
+        errors = {}
 
+        # foreign key
         try:
-            user.local.service_introduction = request.DATA['service_introduction']
-            user.local.save()
-        except:
-            local = Local(user=user)
-            local.service_introduction = request.DATA['service_introduction']
-            local.save()
+            location_city = request.DATA['location_city']
 
-        try:
-            user.is_male = request.DATA['is_male']
-        except:
-            pass
+            city_list = City.objects.filter(name=location_city, country = user.location_country)
 
+            if len(city_list) == 0:
+                errors['location_city'] = ['city not found in country: %s'%user.location_country.name, ]
+            else:
+                user.location_city = city_list[0]
+
+        except:
+            print "Unexpected error:", sys.exc_info()
+
+        # list field
+        for f in self.safe_list_field:
+            try:
+                f_val = request.DATA[f]
+                f_json_str = '[' + ", ".join(f_val)  + ']'
+                setattr(user, f, f_json_str)
+            except:
+                pass
+
+
+        # char field
+        for f in self.safe_char_field:
+            try:
+                f_val = request.DATA[f]
+                setattr(user, f, f_val)
+            except:
+                pass
+
+        for f in self.safe_url_field:
+            try:
+                url_val = request.DATA[f]
+                file_path = functions.get_file_path_from_url(url_val)
+                image = Image.objects.get(address=file_path)
+                if image is not None:
+                    if image.upload_user == user or image.upload_user is None:
+                        if f == 'avatar_url':
+                            user.avatar = image
+                        if f == 'id_card_url':
+                            user.id_card = image
+
+            except:
+                pass
         try:
             user.save()
             u = UserSerializer(request.user)
+            data = u.data
+            data['errors'] = errors
             return Response(u.data, status.HTTP_200_OK)
         except:
-            return Response({"message": "internal error, fail to update profile"}, status.HTTP_400_BAD_REQUEST)
+            pass
+
+        return Response(
+                    {"message": "internal error, fail to update profile",
+                         "errors": errors
+                         }, status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -176,8 +231,11 @@ class UserViewSet(BaseModelView):
 
             if len(errors) == 0:
                 try:
-                    User.objects.create_user(username=r.telephone, password=r.password, country=r.country, nickname=r.nickname)
-                    return Response(request.DATA, status.HTTP_200_OK)
+                    User.objects.create_user(username=r.register_telephone, password=r.password
+                                             , country=r.register_country, nickname=r.nickname,
+                                             telephone = r.register_telephone)
+                    data['username'] = r.register_telephone
+                    return Response(data, status.HTTP_200_OK)
                 except:
                     print "unexcepted error:", sys.exc_info()[0]
                     return Response({"message":"can not register, internal error"},

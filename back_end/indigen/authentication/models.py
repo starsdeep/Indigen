@@ -4,13 +4,14 @@ from location.models import Country
 from django.forms import forms
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, password, country, nickname):
+    def create_user(self, username, password, country, nickname, telephone = None):
 
         country_obj = Country.objects.get(name=country)
         user = self.model(
             username = username,
             nickname = nickname,
-            location_country = country_obj
+            register_country = country_obj,
+            register_telephone = telephone
         )
         user.set_password(password)
         user.save()
@@ -29,19 +30,25 @@ class MyUserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(unique=True, max_length=30, null=False)
     email = models.EmailField(unique=True, null=True)
-    telephone = models.CharField(unique=True, max_length=20, null=True)
 
-    location_country = models.ForeignKey('location.Country', null=True, on_delete=models.SET_NULL)
-    location_city = models.ForeignKey('location.City',null=True, on_delete=models.SET_NULL)
+    register_telephone = models.CharField(unique=True, max_length=20, null=True)
+    register_country = models.ForeignKey('location.Country', null=True, on_delete=models.SET_NULL, related_name="register_country")
+
+
+    id_card = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL, related_name="id_card")
+
+    verify_telephone = models.CharField(unique=True, max_length=20, null=True)
+    verify_country = models.ForeignKey('location.Country', null=True, on_delete=models.SET_NULL,related_name="verify_country")
+    verify_city = models.ForeignKey('location.City',null=True, on_delete=models.SET_NULL)
+
     nickname = models.CharField(max_length=20,null=True)
 
-    avatar = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL)
-
+    avatar = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL, related_name="avatar")
 
     live_start_year = models.IntegerField(default=0, null=False)
     is_male = models.NullBooleanField()
     birthday = models.DateField(null=True)
-    introduction = models.CharField(max_length=500,null=True)
+    personal_statement = models.CharField(max_length=500,null=True)
 
     reply_average_second = models.IntegerField(null=True)
     is_admin = models.BooleanField(default=False)
@@ -49,6 +56,15 @@ class User(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
 
     age = models.CharField(max_length=8, null=True)
+    vocation_type = models.CharField(max_length=20, null=True)
+    vocation_name = models.CharField(max_length=20, null=True)
+
+    native_province = models.CharField(max_length=20,null=True)
+    native_city = models.CharField(max_length=20, null=True)
+
+    hobbies = models.CharField(max_length=300,null=True)
+    characters = models.CharField(max_length=300,null=True)
+    languages = models.CharField(max_length=300, null=True)
 
     USERNAME_FIELD = 'username'
 
@@ -73,5 +89,6 @@ class Local(models.Model):
     service_reply_average_second = models.IntegerField(null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10,null=True)
     service_introduction = models.CharField(max_length=300)
-    id_card = models.ForeignKey('filesystem.Image', db_index=False, null=True, on_delete=models.SET_NULL)
+
+
 

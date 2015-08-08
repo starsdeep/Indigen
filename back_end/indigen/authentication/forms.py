@@ -12,10 +12,10 @@ class RegisterModel(models.Model):
     class Meta:
         abstract = True
 
-    telephone = models.CharField(max_length=20, null=True)
+    register_telephone = models.CharField(max_length=20, null=True)
     nickname = models.CharField(max_length=20,null=False,blank=False,default="")
     password = models.CharField(max_length=128,blank=False,default="")
-    country = models.CharField(max_length=30, default="", blank=False)
+    register_country = models.CharField(max_length=30, default="", blank=False)
 
     def to_python(self, value):
         try:
@@ -37,14 +37,14 @@ class RegisterModel(models.Model):
 
     def clean(self):
         errors = {}
-        telephone = getattr(self, 'telephone')
+        telephone = getattr(self, 'register_telephone')
         user = User.objects.filter(username=telephone)
         if len(user) > 0:
-            errors["telephone"] = "telephone already exists, you can login directly"
+            errors["register_telephone"] = "telephone already exists, you can login directly"
 
-        if self.country != "":
-            country_list = Country.objects.filter(name=self.country)
+        if self.register_country != "":
+            country_list = Country.objects.filter(name=self.register_country)
 
             if len(country_list) == 0:
-                errors["country"] = "country not found"
+                errors["register_country"] = "country not found"
         raise forms.ValidationError(errors)

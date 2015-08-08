@@ -37,4 +37,6 @@ INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('捷克', '420')
 INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('奥地利', '43'); 
 INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('越南', '84'); 
 INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('柬埔寨', '855'); 
-INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('澳大利亚', '61'); 
+INSERT INTO location_country(`name`, `telephone_prefix`) VALUE ('澳大利亚', '61');
+
+INSERT INTO location_city(`name`, `country_id`) VALUE ('曼谷', 4);

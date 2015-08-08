@@ -13,12 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.get(username=data['username'])
         try:
             avatar =  Image.objects.get(id=data['avatar'])
-            data['avatar'] = avatar.address.url
+            data['avatar_url'] = avatar.address.url
         except:
             pass
 
         try:
-            data['id_card'] = user.local.id_card.address.url
+            data['id_card_url'] = user.id_card.address.url
         except:
             pass
 
@@ -31,14 +31,21 @@ class UserSerializer(serializers.ModelSerializer):
             data['location_country'] = user.location_country.name
         except:
             pass
-        
+
+        try:
+            data['location_city'] = user.location_city.name
+        except:
+            pass
+
         return data
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'last_login', 'telephone', 'location_country',
-                  'location_city', 'nickname', 'avatar', 'live_start_year', 'is_male',
-                  'birthday', 'introduction', 'reply_average_second','age')
+        fields = ('username', 'email', 'last_login', 'register_telephone', 'register_country'
+                  , 'nickname', 'avatar', 'live_start_year', 'is_male',
+                  'birthday', 'personal_statement', 'reply_average_second','age','vocation_type'
+                  ,'native_province','native_city','vocation_name','verify_city', 'verify_country',
+                  'languages', 'hobbies', 'characters', 'verify_telephone')
 
 
 
