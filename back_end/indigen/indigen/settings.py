@@ -148,6 +148,6 @@ MEDIA_URL = '/files/'
 
 #MEDIA_ROOT = '/var/www/indigen/'
 
-MEDIA_ROOT = '/../../front_end/media/'
+MEDIA_ROOT = BASE_DIR+'/../../front_end/media/'
 
 print "[check] project media(compromise uploaded files ) dir is: " + MEDIA_ROOT + ", you need to check the dir permission"
