@@ -3,6 +3,7 @@ from indigen.views import IndexView
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'indigen.views.home', name='home'),

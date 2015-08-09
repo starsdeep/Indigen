@@ -15,6 +15,9 @@ node_modules/
 # Bower components
 front_end/static/bower_components/
 
+# User uploaded files
+front_end/media
+
 # Uglified JavaScript
 dist/
 
