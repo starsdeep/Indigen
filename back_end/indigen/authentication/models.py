@@ -66,6 +66,8 @@ class User(AbstractBaseUser):
     characters = models.CharField(max_length=300,null=True)
     languages = models.CharField(max_length=300, null=True)
 
+    is_active = models.BooleanField(default=True)
+
     USERNAME_FIELD = 'username'
 
     objects = MyUserManager()
